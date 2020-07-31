@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "d9075443-03a0-441e-a804-01dd996c7aa4",
+		"name": "BestBuy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all Flat-Screen TVS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ca12f82-9c4b-461e-8488-712c2c1b6a83",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"console.log(resp);\r",
+							"var numofrecords = resp.length;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(categoryPath.name=All Flat-Screen TVs)?show=sku,name,salePrice&sort=salePrice.asc&format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(categoryPath.name=All Flat-Screen TVs)"
+					],
+					"query": [
+						{
+							"key": "show",
+							"value": "sku,name,salePrice"
+						},
+						{
+							"key": "sort",
+							"value": "salePrice.asc"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the manufacturer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6b3da69-53af-4743-a612-58dc6da3eede",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"console.log(resp);\r",
+							"var numofrecords = resp.length;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(categoryPath.name=All Flat-Screen TVs)?show=manufacturer&format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(categoryPath.name=All Flat-Screen TVs)"
+					],
+					"query": [
+						{
+							"key": "show",
+							"value": "manufacturer"
+						},
+						{
+							"key": "sort",
+							"value": "salePrice.asc",
+							"disabled": true
+						},
+						{
+							"key": "apiKey",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the price and offer dates",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ff3f595-7090-4a70-b2f4-e7c6d9817bda",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"console.log(resp);\r",
+							"var numofrecords = resp.length;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products?format=json&show=regularPrice,salePrice,offers.startDate,offers.endDate&pageSize=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "salePrice.asc",
+							"disabled": true
+						},
+						{
+							"key": "apiKey",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "show",
+							"value": "regularPrice,salePrice,offers.startDate,offers.endDate"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Products and sort by shipping cost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products?sort=shippingCost.asc&show=sku,name,shippingCost&pageSize=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "shippingCost.asc"
+						},
+						{
+							"key": "show",
+							"value": "sku,name,shippingCost"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "cursorMark",
+							"value": "AoMIAAAAAAg/gAAAMnByb2R1Y3RfMTE3ODg1NV91cw==",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Categories and find id for Electronics category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2a369d5-51c1-44ce-9de4-197ba69ae1ed",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"console.log(resp);\r",
+							"var categoryId = resp.categories[0].id;\r",
+							"console.log(categoryId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/categories(name=electronics)?format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"categories(name=electronics)"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "show",
+							"value": "id,name",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get electronics category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(categoryPath.id={{electronicsCategoryId}})?format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(categoryPath.id={{electronicsCategoryId}})"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Electronics",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get names and total number of categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e2c4a68-8224-4706-8128-6f99c5ef0051",
+						"exec": [
+							"var resp=pm.response.json();\r",
+							"console.log(resp);\r",
+							"var catCount=resp.total;\r",
+							"console.log(catCount);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/categories?format=json&show=name&pageSize=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Electronics",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "show",
+							"value": "name"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the services offered by Attleborough Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7d24b36-9cca-44f4-9110-81a4d3c9399e",
+						"exec": [
+							"// var resp=pm.response.json;\r",
+							"// var time=resp.stores[0].hours;\r",
+							"// console.log(time);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/stores(city=Attleboro*)?pageSize=100&format=json&sort=city.asc&show=city,services",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores(city=Attleboro*)"
+					],
+					"query": [
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "sort",
+							"value": "city.asc"
+						},
+						{
+							"key": "show",
+							"value": "city,services"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the sunday store timing of Attleborough Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae34f5aa-e816-4757-a1b4-1987f01db960",
+						"exec": [
+							"var resp=pm.response.json();\r",
+							"var time=resp.stores[0].hours;\r",
+							"console.log(time);\r",
+							"var sundayHours = time.split(';')[0];\r",
+							"console.log(sundayHours);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/stores(city=Attleboro*)?pageSize=100&format=json&show=hours",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores(city=Attleboro*)"
+					],
+					"query": [
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "sort",
+							"value": "city.asc",
+							"disabled": true
+						},
+						{
+							"key": "show",
+							"value": "hours"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "apiKey",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c2035285-1094-4eab-8935-4584a4fdf4ee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "500496bb-ae8b-4aeb-9704-a41cda4fec06",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
