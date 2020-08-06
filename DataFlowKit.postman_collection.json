@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "950af3f8-f3d1-4446-8648-799920d56791",
+		"name": "DataFlowKit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get the top 5 countries with highest new cases",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d77e7e6f-dfe2-46c7-804d-ab3518c0d608",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var obj = JSON.parse(JSON.stringify(resp));\r",
+							"var ctr=resp.length;\r",
+							"// Top 5 countries with Highest New Cases\r",
+							"var newCases = [];\r",
+							"var countries = [];\r",
+							"for(var i=0 ; i<ctr-1 ; i++){\r",
+							"    var records = obj[i];\r",
+							"    str=records['New Cases_text'];\r",
+							"    str=str.replace(/[^0-9]/g,'');\r",
+							"    var number = Number(str);\r",
+							"    newCases.push(number);\r",
+							"}\r",
+							"newCases.sort(function(a,b){return b-a});\r",
+							"// console.log(newCases);\r",
+							"console.log(\"Top 5 Countries with highest new cases\");\r",
+							"console.log(\"--------------------------------------\");\r",
+							"for(var count=1 ; count<=5 ; count++){\r",
+							"    check = newCases[count];\r",
+							"    for(var j=0 ; j<ctr-1 ; j++){\r",
+							"        var records = obj[j];\r",
+							"        str=records['New Cases_text'];\r",
+							"        str=str.replace(/[^0-9]/g,'');\r",
+							"        var number = Number(str);\r",
+							"        // console.log(records['Country_text']);\r",
+							"        if((check == number)){\r",
+							"            console.log(records['Country_text'] + \"-----\" + number);\r",
+							"            countries.push(records['Country_text']);\r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"console.log(countries);\r",
+							"\r",
+							"// Top 5 countries with Lowest New Death Cases \r",
+							"// Omitting countries with 0 new death cases\r",
+							"var newDeaths = [];\r",
+							"var countriesDeaths = [];\r",
+							"for(var i=0 ; i<ctr-1 ; i++){\r",
+							"    var records = obj[i];\r",
+							"    strDeaths=records['New Deaths_text'];\r",
+							"    strDeaths=strDeaths.replace(/[^0-9]/g,'');\r",
+							"    var numberDeaths = Number(strDeaths);\r",
+							"    newDeaths.push(numberDeaths);\r",
+							"}\r",
+							"newDeaths.sort(function(a,b){return a-b});\r",
+							"// console.log(newDeaths);\r",
+							"console.log(\"Top 5 Countries with lowest new Deaths Cases\");\r",
+							"console.log(\"--------------------------------------------\");\r",
+							"var i=0;\r",
+							"for(var count=0 ; count<ctr ; count++){\r",
+							"    var check = newDeaths[count];\r",
+							"    if(check != 0){\r",
+							"    for(var j=0 ; j<ctr-1 ; j++){\r",
+							"        var records = obj[j];\r",
+							"        strDeaths=records['New Deaths_text'];\r",
+							"        strDeaths=strDeaths.replace(/[^0-9]/g,'');\r",
+							"        var numberDeaths = Number(strDeaths);\r",
+							"        if((check == numberDeaths) ){\r",
+							"                if(i==5)\r",
+							"                    break;\r",
+							"                console.log(records['Country_text'] + \"-----\" + numberDeaths);\r",
+							"                countriesDeaths.push(records['Country_text']);\r",
+							"                i++;\r",
+							"            }   \r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"console.log(countriesDeaths);\r",
+							"\r",
+							"//verify the status code\r",
+							"var code = pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"}).response.code;\r",
+							"console.log(\"The response code is \" + code);\r",
+							"\r",
+							"//verify the response Time\r",
+							"var time = pm.test(\"Response time is less than 600ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"}).response.responseTime;\r",
+							"console.log(\"The Response Time is \" + time + \"ms which is below 600ms\");\r",
+							"\r",
+							"//verify if the Content-Type is json\r",
+							"var type = pm.test(\"Content-Type is present\", function () {  \r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"        }).response.headers.get('Content-Type');\r",
+							"console.log(\"The Content-type is \" + type);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://covid-19.dataflowkit.com/v1?",
+					"protocol": "https",
+					"host": [
+						"covid-19",
+						"dataflowkit",
+						"com"
+					],
+					"path": [
+						"v1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
