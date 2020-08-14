@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "dce66751-1cbb-4bf9-98be-ee9aef035aa7",
+		"name": "BestBuyDeveloper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get stores near to postal code ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b10a47d6-a509-4a4e-a691-da24da09cb65",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var store = resp.stores[0].name;\r",
+							"console.log(\"The store closest to the postal code 02864 is \" + store);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/stores(area(02864,5))?format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"stores(area(02864,5))"
+					],
+					"query": [
+						{
+							"key": "show",
+							"value": "name,address,address2,city,fullPostalCode",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get canon products in the price range of $1000-$1500",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7622dd69-3021-4b3b-a84b-377dcb83fe76",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(manufacturer=canon&regularPrice>=1000&regularPrice<=1500)?format=json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(manufacturer=canon&regularPrice>=1000&regularPrice<=1500)"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "sort",
+							"value": "regularPrice.dsc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get regular and selling price for iPhone11 Pro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bba104d0-5c14-43a6-a519-210f2156a3ae",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(alternateCategories.name=iPhone 11 Pro)?format=json&pageSize=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(alternateCategories.name=iPhone 11 Pro)"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "show",
+							"value": "name,regularPrice,salePrice",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get sku of iPhones which are available in store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a89c2219-a039-415d-810e-c44fdb829401",
+						"exec": [
+							"var resp = pm.response.json();\r",
+							"var obj = JSON.parse(JSON.stringify(resp));\r",
+							"var ctr=resp.products.length;\r",
+							"var skuArray = [];\r",
+							"for(var i=0 ; i<ctr ; i++){\r",
+							"    var records = obj.products[i].sku;\r",
+							"    skuArray.push(records);\r",
+							"}\r",
+							"console.log(ctr);\r",
+							"console.log(skuArray);\r",
+							"    pm.globals.set(\"skuArray\", skuArray);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products(inStoreAvailability=true&alternateCategories.name=iPhone 11 Pro)?format=json&pageSize=100&show=sku",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products(inStoreAvailability=true&alternateCategories.name=iPhone 11 Pro)"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "show",
+							"value": "sku"
+						},
+						{
+							"key": "file",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stores available for pickup for iPhone sku 6341280 in RI region",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd9f9195-947a-49e6-81e3-5adfb25667a4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products/6341280/stores.json?format=json&postalCode=02886&pageSize=100",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products",
+						"6341280",
+						"stores.json"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "postalCode",
+							"value": "02886"
+						},
+						{
+							"key": "pageSize",
+							"value": "100"
+						},
+						{
+							"key": "file",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stores Available for all SKUs of iPhones in RI region - using data file in runner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b45de0a-5b2e-40d6-9910-7d8e2d3784ea",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apiKey",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.bestbuy.com/v1/products/{{sku}}/stores.json?format=json&postalCode=02886",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bestbuy",
+						"com"
+					],
+					"path": [
+						"v1",
+						"products",
+						"{{sku}}",
+						"stores.json"
+					],
+					"query": [
+						{
+							"key": "sku",
+							"value": "{{sku}}",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "postalCode",
+							"value": "02886"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "apikey",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "qUh3qMK14GdwAs9bO59QRSCJ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c04ac63d-086e-4c66-9691-90f0f9dbbe05",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "48f06d07-ef63-4906-9e1f-0b288fd72be3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
